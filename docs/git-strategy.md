@@ -56,7 +56,7 @@
    git checkout main
    git merge release/1.0.0
    git tag -a v1.0.0 -m "Release 1.0.0"
-   git checkout develop
+   git checkout developgit remote add origin
    git merge release/1.0.0
    ```
 
