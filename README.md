@@ -1,46 +1,27 @@
 # SmartPyme
 
-SmartPyme es una plataforma integral diseñada para ayudar a las pequeñas y medianas empresas a optimizar sus operaciones y mejorar su eficiencia mediante el uso de inteligencia artificial.
+Plataforma de inteligencia artificial para pequeñas y medianas empresas.
 
-## Características Principales
+## Descripción
 
-- **Asistente Virtual Inteligente**: Interfaz conversacional para interactuar con la plataforma
-- **Gestión de Inventario**: Control y optimización de stock
-- **Análisis de Ventas**: Visualización y análisis de datos de ventas
-- **Gestión de Clientes**: Base de datos de clientes y seguimiento de interacciones
-- **Automatización de Procesos**: Optimización de tareas repetitivas
-- **Reportes y Analytics**: Generación de informes y análisis de datos
+SmartPyme es una plataforma que utiliza inteligencia artificial para ayudar a las PYMES a optimizar sus operaciones, mejorar la toma de decisiones y aumentar su productividad.
 
-## Estructura del Proyecto
+## Características
 
-```
-smartpyme/
-├── apps/                # Aplicaciones principales
-├── docker/             # Configuraciones Docker
-├── docs/               # Documentación
-├── tests/              # Tests
-├── infra/              # Infraestructura y configuración
-├── scripts/            # Scripts de utilidad
-├── data/               # Datos y recursos
-├── shared/             # Código compartido
-├── integrations/       # Integraciones con servicios externos
-├── agents/             # Agentes de IA y automatización
-├── docker-compose.yml  # Configuración de Docker Compose
-├── .env.example        # Ejemplo de variables de entorno
-├── .env                # Variables de entorno (no versionado)
-├── .gitignore         # Archivos ignorados por Git
-└── LICENSE            # Licencia del proyecto
-```
+- Asistente virtual inteligente
+- Análisis predictivo
+- Automatización de tareas
+- Integración con múltiples servicios
+- Dashboard interactivo
 
-## Configuración del Entorno
+## Requisitos del Sistema
 
-### Requisitos Previos
-- Python 3.11+
-- Node.js 18+
 - Docker y Docker Compose
+- Node.js 18+
+- Python 3.11+
 - Git
 
-### Configuración Inicial
+## Instalación
 
 1. Clonar el repositorio:
 ```bash
@@ -48,104 +29,75 @@ git clone https://github.com/tu-usuario/smartpyme.git
 cd smartpyme
 ```
 
-2. Ejecutar script de configuración:
+2. Configurar variables de entorno:
 ```bash
-# Linux/Mac
-chmod +x scripts/setup-env.sh
-./scripts/setup-env.sh
-
-# Windows (PowerShell)
-.\scripts\setup-env.ps1
-```
-
-3. Configurar variables de entorno:
-```bash
-# Copiar archivo de ejemplo
+# Copiar archivos de ejemplo
 cp config/.env.example config/.env
+cp apps/frontend/.env.example apps/frontend/.env
+cp apps/backend/.env.example apps/backend/.env
 
-# Editar el archivo .env con tus configuraciones
+# Editar los archivos .env con tus configuraciones
 ```
 
-4. Iniciar los servicios con Docker:
+3. Iniciar los servicios con Docker:
 ```bash
-docker-compose up -d
+docker-compose up --build
 ```
 
-### Estructura de Configuración
+## Estructura del Proyecto
 
 ```
 smartpyme/
-├── config/
-│   ├── .env.example      # Ejemplo de variables de entorno
-│   ├── .env.development  # Variables para desarrollo
-│   └── .env.production   # Variables para producción
 ├── apps/
-│   ├── backend/
-│   │   └── venv/        # Entorno virtual de Python
-│   └── frontend/
-└── docker/
-    └── ...
+│   ├── frontend/          # Aplicación Next.js
+│   └── backend/           # API FastAPI
+├── config/                # Configuraciones
+├── docker/               # Configuraciones Docker
+├── docs/                 # Documentación
+└── scripts/              # Scripts de utilidad
 ```
 
-### Variables de Entorno
+## Variables de Entorno
 
-Las variables de entorno están organizadas en secciones:
+### Configuración General
+- `APP_NAME`: Nombre de la aplicación
+- `APP_ENV`: Entorno (development/production)
 
-1. **Configuración General**
-   - APP_NAME
-   - APP_ENV
-   - APP_DEBUG
-   - APP_URL
+### Backend
+- `BACKEND_PORT`: Puerto del backend
+- `BACKEND_HOST`: Host del backend
+- `JWT_SECRET`: Clave secreta para JWT
+- `DB_*`: Configuración de base de datos
 
-2. **Base de Datos**
-   - DB_HOST
-   - DB_PORT
-   - DB_DATABASE
-   - DB_USERNAME
-   - DB_PASSWORD
-
-3. **Backend**
-   - BACKEND_PORT
-   - BACKEND_URL
-   - JWT_SECRET
-   - JWT_EXPIRATION
-
-4. **Frontend**
-   - NEXT_PUBLIC_API_URL
-   - NEXT_PUBLIC_APP_URL
-
-5. **Integraciones**
-   - OPENAI_API_KEY
-   - HUGGINGFACE_API_KEY
-
-6. **Docker**
-   - DOCKER_NETWORK
-   - DOCKER_BACKEND_SERVICE
-   - DOCKER_FRONTEND_SERVICE
-   - DOCKER_DB_SERVICE
+### Frontend
+- `NEXT_PUBLIC_API_URL`: URL de la API
+- `NEXT_PUBLIC_APP_URL`: URL de la aplicación
 
 ## Desarrollo
 
-### Estructura de Directorios
+1. Iniciar el backend:
+```bash
+cd apps/backend
+python -m venv venv
+source venv/bin/activate  # o .\venv\Scripts\activate en Windows
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
 
-- **apps/**: Contiene las aplicaciones principales del proyecto
-- **docker/**: Configuraciones y archivos relacionados con Docker
-- **docs/**: Documentación del proyecto
-- **tests/**: Pruebas unitarias y de integración
-- **infra/**: Configuración de infraestructura
-- **scripts/**: Scripts de utilidad para desarrollo y despliegue
-- **data/**: Datos y recursos utilizados por la aplicación
-- **shared/**: Código compartido entre diferentes partes del proyecto
-- **integrations/**: Integraciones con servicios externos
-- **agents/**: Agentes de IA y automatización
+2. Iniciar el frontend:
+```bash
+cd apps/frontend
+npm install
+npm run dev
+```
 
 ## Contribución
 
 1. Fork el proyecto
-2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
 3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
 4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abrir un Pull Request
+5. Abre un Pull Request
 
 ## Licencia
 
@@ -153,6 +105,6 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ## Contacto
 
-Tu Nombre - [@tu-twitter](https://twitter.com/tu-twitter) - email@ejemplo.com
+Tu Nombre - [@tutwitter](https://twitter.com/tutwitter) - email@ejemplo.com
 
 Link del Proyecto: [https://github.com/tu-usuario/smartpyme](https://github.com/tu-usuario/smartpyme)
